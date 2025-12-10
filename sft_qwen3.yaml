@@ -1,0 +1,60 @@
+####################
+# 基本设置
+####################
+# 换成你实际要用的 4B 模型，比如 Qwen2 / Qwen1.5 / Llama 等
+# 下面只是示例：Qwen2-4B-Instruct
+model_name_or_path: Qwen/Qwen3-4B-Base
+trust_remote_code: true
+
+stage: sft
+do_train: true
+do_eval: false
+finetuning_type: full
+#deepspeed: ./LLaMA-Factory/examples/deepspeed/ds_z3_config.json
+
+# 模型聊天模板（按你用的模型改，Qwen 系列一般用 qwen / qwen2）
+template: qwen3_nothink
+
+####################
+# 数据集设置
+####################
+dataset: news_sft_2025_200_5000, news_sft_2024_200_5000, news_sft_2023_200_5000, news_sft_2022_200_5000, news_sft_2021_200_5000    # data/dataset_info.json 里定义的数据集名称
+dataset_dir: data
+cutoff_len: 2048          # 新闻不算太长的话 1024~2048 都可以，显存不够就先改成 1024
+#max_samples: 200000       # 可选，控制最多采多少条
+overwrite_cache: true
+preprocessing_num_workers: 64
+dataloader_num_workers: 16
+
+####################
+# 训练超参数
+####################
+output_dir: ./models/PeoplesDaily-Qwen3-4B-Base
+logging_steps: 1
+save_steps: 16
+save_total_limit: 3
+
+num_train_epochs: 2
+learning_rate: 1.0e-5
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+# 4B 全量 + 两张 GPU，大致可以先这样试：
+per_device_train_batch_size: 24      # 显存紧就改 2 或 1
+gradient_accumulation_steps: 1      # 增大等效 batch size
+
+
+ddp_backend: nccl
+ddp_find_unused_parameters: false
+
+####################
+# 其他
+####################
+report_to: "tensorboard"           # 或 "tensorboard"
+eval_strategy: "no"
+
+# 可选：如果你的环境装了 flash-attn-2，可以打开（没有就删掉）
+#use_flash_attention_2: true
