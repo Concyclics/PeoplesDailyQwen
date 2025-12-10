@@ -1,0 +1,52 @@
+{
+  "news_sft_2025_200_5000": {
+    "file_name": "news_sft_2025_200_5000.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system",
+      "history": "history"
+    }
+  },
+  "news_sft_2024_200_5000": {
+    "file_name": "news_sft_2024_200_5000.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system",
+      "history": "history"
+    }
+  },
+  "news_sft_2023_200_5000": {
+    "file_name": "news_sft_2023_200_5000.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system",
+      "history": "history"
+    }
+  },
+  "news_sft_2022_200_5000": {
+    "file_name": "news_sft_2022_200_5000.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system",
+      "history": "history"
+    }
+  },
+  "news_sft_2021_200_5000": {
+    "file_name": "news_sft_2021_200_5000.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output",
+      "system": "system",
+      "history": "history"
+    }
+  }
+}
